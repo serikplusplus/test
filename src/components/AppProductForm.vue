@@ -92,7 +92,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	gap: 35px;
-	max-width: 395px;
+	max-width: 100%;
 }
 .product-form__label {
 	display: flex;
@@ -168,11 +168,5 @@ export default {
 	background-color: #f5f5f5;
 	cursor: pointer;
 	transition: 0.2s background-color ease-in-out;
-}
-.btn {
-}
-.btn_blue {
-}
-.product-form__btn {
 }
 </style>

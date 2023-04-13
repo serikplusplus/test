@@ -1,22 +1,25 @@
 <template>
 	<div class="cart_wrapper">
-		<table class="cart">
-			<thead class="cart__head">
-				<tr>
-					<td>Название товара</td>
-					<td>Количество</td>
-					<td>Стоимость</td>
-				</tr>
-			</thead>
+		<div class="f">
+			<table class="cart">
+				<thead class="cart__head">
+					<tr>
+						<td>Название товара</td>
+						<td>Количество</td>
+						<td>Стоимость</td>
+					</tr>
+				</thead>
 
-			<tbody>
-				<tr v-for="item in cart" :key="item.id">
-					<td>{{ item.product.title }}</td>
-					<td>{{ item.col }}</td>
-					<td>{{ item.col * item.product.price }}</td>
-				</tr>
-			</tbody>
-		</table>
+				<tbody>
+					<tr v-for="item in cart" :key="item.id">
+						<td data-label="Название товара">{{ item.product.title }}</td>
+						<td data-label="Количество">{{ item.col }}</td>
+						<td data-label="Стоимость">{{ item.col * item.product.price }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
 		<div class="full__price">Итого: {{ fullPrice }}</div>
 		<button class="btn btn_green cart__btn" @click="send">Сохранить</button>
 	</div>
@@ -57,12 +60,18 @@ export default {
 
 <style scoped>
 .cart_wrapper {
-	display: flex;
+	padding-top: 55px;
 	flex-grow: 1;
+}
+.f {
+	display: flex;
+
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	padding-top: 55px;
+}
+.overf {
+	overflow-x: auto;
 }
 .cart {
 	width: 100%;
@@ -89,5 +98,45 @@ export default {
 .full__price {
 	align-self: flex-end;
 	margin-bottom: 25px;
+}
+
+@media (max-width: 500px) {
+	.f {
+		display: inline-block;
+	}
+	.cart {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+	.cart thead {
+		display: none;
+	}
+	.cart tr {
+		display: block;
+
+		margin-bottom: 25px;
+		border-bottom: 2px solid #ddd;
+	}
+	.cart tr td:first-child {
+		width: 100%;
+	}
+	.cart td {
+		display: flex;
+		justify-content: space-between;
+		text-align: right;
+		border-bottom: 1px dotted #ccc;
+		border-right: 1px solid transparent;
+	}
+	.cart td:before {
+		content: attr(data-label);
+		text-align: left;
+		float: left;
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+	.cart__btn {
+		width: 100%;
+		min-width: auto;
+	}
 }
 </style>
